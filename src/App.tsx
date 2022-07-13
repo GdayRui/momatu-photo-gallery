@@ -13,7 +13,7 @@ function App() {
 			.then(data => {
 				setImageList([...data]);
 			})
-	})
+	}, [])
 
 	return (
 		<div className="App">
