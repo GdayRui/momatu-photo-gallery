@@ -6,10 +6,11 @@ import PageNavigator from "./PageNavigator"
 const ITEMS_PER_PAGE = 6;
 
 interface Props {
-	imageList: ImageModel[]
+	imageList: ImageModel[],
+	error: null | string
 }
 
-const ImageCardList = ({ imageList }: Props) => {
+const ImageCardList = ({ imageList, error }: Props) => {
 	const [currentPageList, setCurrentPageList] = useState<ImageModel[]>([]);
 	useEffect(() => {
 		setCurrentPageList(imageList.filter((img, idx) => idx < ITEMS_PER_PAGE))
@@ -23,16 +24,22 @@ const ImageCardList = ({ imageList }: Props) => {
 	}
 
 	return (
-		<div className="container mt-5">
-			<div className="row g-5">
-				{currentPageList.map(image => {
-					return <ImageCard key={image.id} image={image} />
-				})}
-			</div>
+		<>
+			{error && <div className="mt-5">{error}</div>}
 
-			<PageNavigator totalPageNum={Math.ceil(imageList.length / ITEMS_PER_PAGE)}
-				onPageNavigate={handlePageNavigation} />
-		</div>
+			{imageList && (
+				<div className="container mt-5">
+					<div className="row g-5">
+						{currentPageList.map(image => {
+							return <ImageCard key={image.id} image={image} />
+						})}
+					</div>
+
+					<PageNavigator totalPageNum={Math.ceil(imageList.length / ITEMS_PER_PAGE)}
+						onPageNavigate={handlePageNavigation} />
+				</div>
+			)}
+		</>
 	)
 }
 
