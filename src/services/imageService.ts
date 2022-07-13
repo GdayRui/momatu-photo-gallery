@@ -10,7 +10,7 @@ export function retrieveImages(): Promise<ImageModel[]> {
 	return fetch(`${API_BASE_URL}${END_POINTS.imageList}`)
 		.then(res => {
 			if (!res.ok) {
-				throw Error('There is something wrong with getting images..')
+				throw Error('There is something wrong when retrieving images..')
 			}
 			return res.json()
 		});
