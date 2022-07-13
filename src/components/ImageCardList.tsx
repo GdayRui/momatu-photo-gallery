@@ -3,14 +3,15 @@ import { ImageModel } from "../models/image/image"
 import ImageCard from "./ImageCard"
 import PageNavigator from "./PageNavigator"
 
+// If needed, this number can be made dynamic by adding a prop 
+// to the ImageCardList component and passed down from upper level or config files
 const ITEMS_PER_PAGE = 6;
 
 interface Props {
 	imageList: ImageModel[],
-	error: null | string
 }
 
-const ImageCardList = ({ imageList, error }: Props) => {
+const ImageCardList = ({ imageList }: Props) => {
 	const [currentPageList, setCurrentPageList] = useState<ImageModel[]>([]);
 	useEffect(() => {
 		setCurrentPageList(imageList.filter((img, idx) => idx < ITEMS_PER_PAGE))
@@ -25,8 +26,6 @@ const ImageCardList = ({ imageList, error }: Props) => {
 
 	return (
 		<>
-			{error && <div className="mt-5">{error}</div>}
-
 			{imageList && (
 				<div className="container mt-5">
 					<div className="row g-5">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import ImageCardList from './components/ImageCardList';
 import { ImageModel } from './models/image/image';
+import ImageOverview from './pages/ImageOverview';
 import { retrieveImages } from './services/imageService';
 import './styles/app.scss'
 
@@ -20,7 +20,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<ImageCardList imageList={imageList} error={error} />
+			<ImageOverview imageList={imageList} error={error} />
 		</div>
 	);
 }
