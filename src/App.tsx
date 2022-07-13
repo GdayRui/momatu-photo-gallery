@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import ImageCardList from './components/ImageCardList';
 import { ImageModel } from './models/image/image';
+import './styles/app.scss'
 
 function App() {
 	const [imageList, setImageList] = useState<ImageModel[]>([]);

@@ -7,11 +7,15 @@ interface Props {
 
 const ImageCardList = ({ imageList }: Props) => {
 
-	return (<div>
-		{imageList.map(image => {
-			return <ImageCard key={image.id} image={image} />
-		})}
-	</div>)
+	return (
+		<div className="container mt-5">
+			<div className="row g-5">
+				{imageList.map(image => {
+					return <ImageCard key={image.id} image={image} />
+				})}
+			</div>
+		</div>
+	)
 }
 
 export default ImageCardList;

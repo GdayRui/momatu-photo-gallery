@@ -8,10 +8,12 @@ interface Props {
 const ImageCard = ({ image }: Props) => {
 
 	return (
-		<div>
-			<img src={image.download_url} alt='' />
-			<div>
-				<p>{image.author}</p>
+		<div className='col col-12 col-sm-6 col-lg-4'>
+			<div className='card'>
+				<img className='card-img-top top-img-fit' src={image.download_url} alt='' />
+				<div className='card-body'>
+					<p className='card-text'>{image.author}</p>
+				</div>
 			</div>
 		</div>
 	)
