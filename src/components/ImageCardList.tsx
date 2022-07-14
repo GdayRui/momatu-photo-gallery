@@ -14,19 +14,23 @@ interface Props {
 const ImageCardList = ({ imageList }: Props) => {
 	const [currentPageList, setCurrentPageList] = useState<ImageModel[]>([]);
 	useEffect(() => {
-		setCurrentPageList(imageList.filter((img, idx) => idx < ITEMS_PER_PAGE))
+		if (imageList) {
+			setCurrentPageList(imageList.filter((img, idx) => idx < ITEMS_PER_PAGE))
+		}
 	}, [imageList])
 
 	const handlePageNavigation = (currentPageIndex: number) => {
-		setCurrentPageList(imageList.filter(
-			(img, idx) =>
-				idx < ITEMS_PER_PAGE * (currentPageIndex + 1) && idx >= ITEMS_PER_PAGE * currentPageIndex
-		))
+		if (imageList) {
+			setCurrentPageList(imageList.filter(
+				(img, idx) =>
+					idx < ITEMS_PER_PAGE * (currentPageIndex + 1) && idx >= ITEMS_PER_PAGE * currentPageIndex
+			))
+		}
 	}
 
 	return (
 		<>
-			{imageList && (
+			{(currentPageList.length > 0) && (
 				<div className="container mt-5">
 					<div className="row g-5">
 						{currentPageList.map(image => {
@@ -37,6 +41,9 @@ const ImageCardList = ({ imageList }: Props) => {
 					<PageNavigator totalPageNum={Math.ceil(imageList.length / ITEMS_PER_PAGE)}
 						onPageNavigate={handlePageNavigation} />
 				</div>
+			)}
+			{(currentPageList.length === 0) && (
+				<div className="alert alert-info">Image list is empty.</div>
 			)}
 		</>
 	)
